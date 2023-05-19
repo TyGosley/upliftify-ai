@@ -1,6 +1,6 @@
 const { User, Feeling } = require('../models/User');
 const { AuthenticationError } = require('apollo-server-express');
-// const { signToken } = require('../utils/auth');
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
@@ -8,7 +8,8 @@ const resolvers = {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id })
           .select('-__v -password')
-          .populate('feelings').populate;
+          .populate('feelings')
+          .populate('emotionHistory');
         return userData;
       }
       throw new AuthenticationError('Not logged in');
@@ -43,7 +44,7 @@ const resolvers = {
       await newFeeling.save();
 
       const updatedUser = await User.findOneAndUpdate(
-        context.user._id,
+        { _id: context.user._id },
         {
           $push: { feelings: newFeeling._id, emotionHistory: newFeeling._id },
         },
