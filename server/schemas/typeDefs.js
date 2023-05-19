@@ -10,6 +10,15 @@ const typeDefs = gql`
     username: String
     email: String
     password: String
+    feelings: [Feeling]
+    emotionHistory: [Feeling]
+  }
+
+  type Feeling {
+    _id: ID
+    emotion: String
+    description: String
+    recommendations: [String]
   }
 
   type Auth {
@@ -20,6 +29,8 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
+    addFeeling(emotion: String!, description: String!): Feeling
+    deleteEmotionHistory: User
   }
 `;
 

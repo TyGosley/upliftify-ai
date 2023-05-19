@@ -1,4 +1,4 @@
-const { User } = require('../models/User');
+const { User, Feeling } = require('../models/User');
 const { AuthenticationError } = require('apollo-server-express');
 // const { signToken } = require('../utils/auth');
 
@@ -8,7 +8,7 @@ const resolvers = {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id })
           .select('-__v -password')
-          .populate('moods');
+          .populate('feelings').populate;
         return userData;
       }
       throw new AuthenticationError('Not logged in');
@@ -35,29 +35,38 @@ const resolvers = {
       return { token, user };
     },
 
-    // saveMood: async (parent, {input}, context) => {
-    //     if(context.user) {
-    //         const updatedUser = await User.findByIdAndUpdate(
-    //             {_id: context.user._id},
-    //             {$push: {savedMoods: input}},
-    //             {new: true}
-    //         );
-    //         return updatedUser;
-    //     }
-    //     throw new AuthenticationError('You need to be logged in!');
-    // },
+    addFeeling: async (parent, args, context) => {
+      const { emotion, description } = args;
 
-    // removeMood: async (parent, {moodId}, context) => {
-    //     if(context.user) {
-    //         const updatedUser = await User.findOneAndUpdate(
-    //             {_id: context.user._id},
-    //             {$pull: {savedMood: {moodId: moodId}}},
-    //             {new: true}
-    //         );
-    //         return updatedUser;
-    //     }
-    //     throw new AuthenticationError('You need to be logged in!');
-    // }
+      const newFeeling = new Feeling({ emotion, description });
+
+      await newFeeling.save();
+
+      const updatedUser = await User.findOneAndUpdate(
+        context.user._id,
+        {
+          $push: { feelings: newFeeling._id, emotionHistory: newFeeling._id },
+        },
+
+        { new: true }
+      )
+        .populate('feelings')
+        .populate('emotionHistory');
+
+      return newFeeling;
+    },
+
+    deleteEmotionHistory: async (parent, args, context) => {
+      const updatedUser = await User.findByIdAndUpdate(
+        { _id: context.user._id },
+        { $pull: { emotionHistory: [] } },
+        { new: true }
+      )
+        .populate('feelings')
+        .populate('emotionHistory');
+
+      return updatedUser;
+    },
   },
 };
 

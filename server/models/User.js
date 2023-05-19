@@ -1,8 +1,7 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
-// import schema from mood.js
-// const moodSchema = require('./Mood');
+
 
 const userSchema = new Schema(
   {
@@ -21,10 +20,19 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    // set savedMoods to be an array of data that adheres to the moodSchema
-    // savedMoods: [moodSchema],
+    feelings: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Feeling',
+      },
+    ],
+    emotionHistory: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Feeling',
+      },
+    ],
   },
-  // set this to use virtual below
   {
     toJSON: {
       virtuals: true,
@@ -47,11 +55,28 @@ userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
 
-// when we query a user, we'll also get another field called `bookCount` with the number of saved books we have
-// userSchema.virtual('bookCount').get(function () {
-//   return this.savedBooks.length;
-// });
-
 const User = model('User', userSchema);
 
-module.exports = User;
+const feelingSchema = new Schema(
+  {
+    emotion: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    recommendations: {
+      type: [String],
+      default: [],
+    },
+  },
+  {
+    timestamps: true,
+    }
+);
+
+const Feeling = model('Feeling', feelingSchema);
+
+module.exports = { User, Feeling };
