@@ -1,9 +1,19 @@
-const mongoose = require('mongoose');
+const { Schema, model } = require('mongoose');
 
-const FeelingSchema = new mongoose.Schema({
-  emotion: String,
-  description: String,
+const FeelingSchema = new Schema({
+  emotion: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  positive: {
+    type: Boolean,
+    required: true,
+  },
   recommendations: [String],
 });
 
-module.exports = mongoose.model('Feeling', FeelingSchema);
+module.exports = model('Feeling', FeelingSchema);
