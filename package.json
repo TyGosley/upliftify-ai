@@ -18,5 +18,8 @@
     "health"
   ],
   "author": "Kevin O'Shea, Habib Maksoud, Tyler Gosley",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.0.1"
+  }
 }
