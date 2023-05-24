@@ -33,18 +33,6 @@ export const ADD_USER = gql`
         _id
         username
         email
-        feelings {
-          _id
-          emotion
-          description
-          recommendations
-        }
-        emotionHistory {
-          _id
-          emotion
-          description
-          recommendations
-        }
       }
     }
   }
@@ -106,10 +94,23 @@ export const UPDATE_FEELINGS = gql`
 `;
 
 export const UPDATE_EMOTION_HISTORY = gql`
-    mutation updateEmotionHistory($emotionHistory: [ID]!) {
-        updateEmotionHistory(emotionHistory: $emotionHistory) {
-
-        }
+  mutation updateEmotionHistory($emotionHistory: [ID]!) {
+    updateEmotionHistory(emotionHistory: $emotionHistory) {
+      _id
+      username
+      email
+      feelings {
+        _id
+        emotion
+        description
+        recommendations
+      }
+      emotionHistory {
+        _id
+        emotion
+        description
+        recommendations
+      }
     }
+  }
 `;
-

@@ -1,5 +1,5 @@
 import decode from 'jwt-decode';
-require('dotenv').config();
+
 
 class AuthService {
     getProfile() {
