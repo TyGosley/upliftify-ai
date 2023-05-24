@@ -33,18 +33,6 @@ export const ADD_USER = gql`
         _id
         username
         email
-        feelings {
-          _id
-          emotion
-          description
-          recommendations
-        }
-        emotionHistory {
-          _id
-          emotion
-          description
-          recommendations
-        }
       }
     }
   }
