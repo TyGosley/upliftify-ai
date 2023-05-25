@@ -1,6 +1,7 @@
-const { User, Feeling } = require('../models/User');
-const { AuthenticationError } = require('apollo-server-express');
+const { User } = require('../models/User');
+
 const { signToken } = require('../utils/auth');
+const { AuthenticationError } = require('apollo-server-express');
 
 const resolvers = {
   Query: {
@@ -40,10 +41,9 @@ const resolvers = {
       }
     },
 
-    addUser: async (parent, args) => {
+    addUser: async (parent, { username, email, password }) => {
       try {
-        console.log({ args });
-        const user = await User.create(args);
+        const user = await User.create({ username, email, password });
         const token = signToken(user);
         return { token, user };
       } catch (error) {
@@ -52,30 +52,39 @@ const resolvers = {
       }
     },
 
-    addFeeling: async (parent, args, context) => {
+    addFeeling: async (parent, { FeelingData }, context) => {
       try {
-        const { emotion, description } = args;
-
-        const newFeeling = new Feeling({ emotion, description });
-
-        await newFeeling.save();
-
+        if (!FeelingData) {
+          throw new Error("FeelingData is undefined");
+        }
+    
+        const { emotion, description } = FeelingData;
+    
+        const newFeeling = {
+          emotion,
+          description,
+          positive: true,
+          recommendations: []
+        };
+    
+        console.log(FeelingData);
+    
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
-          {
-            $push: { feelings: newFeeling._id, emotionHistory: newFeeling._id },
-          },
+          { $addToSet: { feelings: newFeeling } },
           { new: true }
-        )
-          .populate('feelings')
-          .populate('emotionHistory');
-
-        return newFeeling;
+        );
+    
+        return updatedUser;
       } catch (error) {
-        console.error('Error in "addFeeling" mutation:', error);
-        throw error;
+        // Handle the error here
+        console.error(error);
+        throw new Error("An error occurred while adding the feeling.");
       }
     },
+    
+    
+    
 
     deleteEmotionHistory: async (parent, args, context) => {
       try {
@@ -97,4 +106,3 @@ const resolvers = {
 };
 
 module.exports = resolvers;
-

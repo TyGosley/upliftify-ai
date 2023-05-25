@@ -33,26 +33,14 @@ export const ADD_USER = gql`
         _id
         username
         email
-        feelings {
-          _id
-          emotion
-          description
-          recommendations
-        }
-        emotionHistory {
-          _id
-          emotion
-          description
-          recommendations
-        }
       }
     }
   }
 `;
 
 export const ADD_FEELING = gql`
-  mutation addFeeling($emotion: String!, $description: String!) {
-    addFeeling(emotion: $emotion, description: $description) {
+  mutation addFeeling($feelingData: FeelingInput!) {
+    addFeeling(feelingData: $feelingData) {
       _id
       emotion
       description
@@ -60,6 +48,7 @@ export const ADD_FEELING = gql`
     }
   }
 `;
+
 
 export const DELETE_EMOTION_HISTORY = gql`
   mutation deleteEmotionHistory {
@@ -105,11 +94,47 @@ export const UPDATE_FEELINGS = gql`
   }
 `;
 
-export const UPDATE_EMOTION_HISTORY = gql`
-    mutation updateEmotionHistory($emotionHistory: [ID]!) {
-        updateEmotionHistory(emotionHistory: $emotionHistory) {
-
-        }
+export const SAVE_FEELING = gql`
+  mutation saveFeeling($emotion: String!, $description: String!, $recommendations: String!) {
+    saveFeeling(emotion: $emotion, description: $description, recommendations: $recommendations) {
+      _id
+      username
+      email
+      feelings {
+        _id
+        emotion
+        description
+        recommendations
+      }
+      emotionHistory {
+        _id
+        emotion
+        description
+        recommendations
+      }
     }
+  }
 `;
 
+
+export const UPDATE_EMOTION_HISTORY = gql`
+  mutation updateEmotionHistory($emotionHistory: [ID]!) {
+    updateEmotionHistory(emotionHistory: $emotionHistory) {
+      _id
+      username
+      email
+      feelings {
+        _id
+        emotion
+        description
+        recommendations
+      }
+      emotionHistory {
+        _id
+        emotion
+        description
+        recommendations
+      }
+    }
+  }
+`;
