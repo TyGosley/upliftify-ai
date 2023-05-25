@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
-const Feeling = require('./Feeling');
+// const Feeling = require('./Feeling');
 
 const userSchema = new Schema(
   {
@@ -56,4 +56,4 @@ userSchema.methods.isCorrectPassword = async function (password) {
 
 const User = model('User', userSchema);
 
-module.exports = { User, Feeling };
+module.exports = { User };

@@ -70,9 +70,10 @@
 } */
 
 .UpliftTitle {
-  font-size: 3rem;
+  font-size: 5rem;
   font-weight: 700;
-  color: #fff;
+  font-family: 'adelle-serif', serif;
+  color: var(--Heather);
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   margin-bottom: 2rem;
 }
@@ -83,12 +84,15 @@
 
 
 /* DropDownEmotion CSS */
+
+
 .scrollable-dropdown {
   max-height: 200px; /* Set a desired height for the scrollable area */
   overflow-y: auto; /* Enable vertical scrolling */
+  background-color: var(--Moderate-Pink);
 }
 
-p {
+.p {
   /* Add your desired styles for the text */
   font-family: Arial, sans-serif;
   font-size: 15px;
@@ -98,7 +102,7 @@ p {
 .dropdown-container {
   max-height: 200px; /* Set the maximum height of the dropdown container */
   overflow-y: auto; /* Enable vertical scrolling for the container if the items exceed the height */
-  background-color: #f9f9f9; /* Set the background color of the dropdown container */
+  background-color: var(--Moderate-Pink); /* Set the background color of the dropdown container */
   padding: 10px; /* Add some padding to the container */
 }
 
@@ -113,13 +117,28 @@ p {
 
 .dropdown-container .dropdown-item:hover,
 .dropdown-container .dropdown-item:focus {
-  background-color: #e9e9e9; /* Change the background color of the items on hover/focus */
+  background-color: var(--Softy-Cyan); /* Change the background color of the items on hover/focus */
+  border-radius: 5px;
 }
 
 .dropdown-container .dropdown-item.active {
-  background-color: #d4d4d4; /* Change the background color of the active item */
+  background-color: var(--Moderate-Pink); /* Change the background color of the active item */
 }
 
 
+
+
+
+
+
 /* Styling for the result container */
+.result-text {
+  font-family: monospace, sans-serif;
+  font-size: 15px;
+  padding: 10px;
+  background-color: var(--Softy-Cyan);
+  color: var(--Blackish-Blue);
+  border-radius: 5px;
+  margin-top: 10px;
+}
 

@@ -153,7 +153,7 @@ function EmotionDropdown() {
   const handleItemClick = (item) => {
     setSelectedItem(item);
     setRandomRecommendation(getRandomRecommendation(item));
-    setDropdownVisible(false); // Hide the dropdown menu after an item is selected
+    setDropdownVisible(true); // Hide the dropdown menu after an item is selected
   };
 
   const getRandomRecommendation = (emotion) => {

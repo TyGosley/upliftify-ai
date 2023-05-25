@@ -94,10 +94,14 @@ export const UPDATE_FEELINGS = gql`
 `;
 
 export const UPDATE_EMOTION_HISTORY = gql`
-    mutation updateEmotionHistory($emotionHistory: [ID]!) {
-        updateEmotionHistory(emotionHistory: $emotionHistory) {
-
-        }
+  mutation updateEmotionHistory($emotionHistory: [ID]!) {
+    updateEmotionHistory(emotionHistory: $emotionHistory) {
+      _id
+      emotion
+      description
+      recommendations
     }
+  }
 `;
+
 
