@@ -1,6 +1,6 @@
 :root {
-  --Heather:#bdc3c7;
-  --Bluewood:#2c3e50;
+  --Heather: #bdc3c7;
+  --Bluewood: #2c3e50;
   --Moderate-Pink: #c33764;
   --Very-Dark-Blue: #1d2671;
   --Blackish-Blue: #141e30;
@@ -31,15 +31,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   /* color: white; */
-  background: linear-gradient(
-    -45deg,
-    #bdc3c7,
-    #2c3e50,
-    #c33764,
-    #1d2671,
-    #141e30,
-    #6dd5ed
-  );
+  background: linear-gradient(-45deg, #bdc3c7, #2c3e50, #c33764, #1d2671, #141e30, #6dd5ed);
   background-size: 400% 400%;
   animation: backgroundChange0 15s ease infinite;
 }
@@ -78,13 +70,7 @@
   margin-bottom: 2rem;
 }
 
-
-
-
-
-
 /* DropDownEmotion CSS */
-
 
 .scrollable-dropdown {
   max-height: 200px; /* Set a desired height for the scrollable area */
@@ -111,7 +97,7 @@
   align-items: center; /* Align items vertically */
 }
 
-.dropdown-container .dropdown-item input[type="checkbox"] {
+.dropdown-container .dropdown-item input[type='checkbox'] {
   margin-right: 10px; /* Add some spacing between the checkbox and item text */
 }
 
@@ -125,12 +111,6 @@
   background-color: var(--Moderate-Pink); /* Change the background color of the active item */
 }
 
-
-
-
-
-
-
 /* Styling for the result container */
 .result-text {
   font-family: monospace, sans-serif;
@@ -141,4 +121,6 @@
   border-radius: 5px;
   margin-top: 10px;
 }
+
+/* Helpful Links CSS */
 

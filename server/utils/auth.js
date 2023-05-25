@@ -3,7 +3,6 @@ require('dotenv').config();
 
 
 const secret = process.env.SECRET_KEY;
-// console.log('SECRET_KEY:', secret);
 const expiration = '2h';
 
 module.exports = {
