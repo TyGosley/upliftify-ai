@@ -1,10 +1,13 @@
-import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import Navbar from '../src/components/Navbar'
+import Navbar from '../src/components/Navbar';
+import Home from '../src/pages/Home';
+import SavedEmotions from '../src/pages/SavedEmotions';
+import HelpfulLinks from '../src/pages/HelpfulLinks';
+import Footer from '../src/components/Footer';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -31,14 +34,19 @@ function App() {
       <Router>
         <>
           <div className="App">
-              <Navbar />
+            <Navbar />
             <header className="App-header">
-              <h1>Upliftify Ai</h1>
-              <img src={logo} className="App-logo" alt="logo" />
-            <div className="container">
-
+              <h1 className='UpliftTitle'>Upliftify Ai</h1>
+              
+              <div className="container">
+                <Routes>
+                  <Route exact path="/" element={<Home />} />
+                  <Route exact path="/saved" element={<SavedEmotions />} />
+                </Routes>
+                
               </div>
             </header>
+            <Footer />
           </div>
         </>
       </Router>

@@ -1,50 +1,41 @@
-import React from 'react';
-import { Container, Card, Button, Row, Col } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Card, Button, Row, Col } from 'react-bootstrap';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Dropdown from 'react-bootstrap/Dropdown';
+import axios from 'axios';
+import EmotionDropdown from '../components/EmotionDropdown';
+import HelpfulLinks from './HelpfulLinks';
 
-// homepage to render signup and login forms, and a dropdown menu to select an emotion
 const Home = () => {
+  const [selectedFeeling, setSelectedFeeling] = useState('');
+  const [response, setResponse] = useState('');
+
+  const handleFeelingSelect = async (feeling) => {
+    setSelectedFeeling(feeling);
+
+    try {
+      // Send the selected feeling to the server for a pre-defined response
+      const response = await axios.post('/api/generate-response', {
+        userInput: feeling,
+      });
+
+      setResponse(response.data.response);
+    } catch (error) {
+      console.error('Error generating response:', error);
+      // Handle the error condition
+    }
+  };
+
   return (
     <>
-      <div fluid="true" className="text-light bg-dark p-5">
-        <Container>
-          <h1>Upliftify Ai</h1>
-        </Container>
+      <div fluid="true">
+        <EmotionDropdown handleFeelingSelect={handleFeelingSelect} />
       </div>
-      <Container>
-        <h2 className="pt-5">Welcome to Upliftify Ai! Please login or signup to get started.</h2>
-        <Row>
-          <Col md="4">
-            <Card border="dark">
-              <Card.Body>
-                <Card.Title>Login</Card.Title>
-                <Card.Text>
-                  <Button className="btn-block btn-danger" href="/login">
-                    Login
-                  </Button>
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col md="4">
-            <Card border="dark">
-              <Card.Body>
-                <Card.Title>Signup</Card.Title>
-                <Card.Text>
-                  <Button className="btn-block btn-danger" href="/signup">
-                    Signup
-                  </Button>
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
+      {/* <div fluid="true">
+        <HelpfulLinks />
+      </div> */}
     </>
   );
 };
 
 export default Home;
-
-// to render the homepage, we need to add it to the App.js file in the client folder
-// it is a route that will be rendered when the user navigates to the root route, or /
-// import React from 'react';

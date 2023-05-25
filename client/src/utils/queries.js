@@ -23,46 +23,56 @@ export const QUERY_ME = gql`
 `;
 
 export const QUERY_FEELINGS = gql`
-    query feelings {
-        feelings {
-            _id
-            emotion
-            description
-            recommendations
-        }
+  query feelings {
+    feelings {
+      _id
+      emotion
+      description
+      recommendations
     }
+  }
+`;
+
+export const QUERY_SAVE_FEELING = gql`
+  query saveFeeling($emotion: String!, $description: String!, $recommendations: String!) {
+    saveEmotion(emotion: $emotion, description: $description, recommendations: $recommendations) {
+      _id
+      emotion
+      description
+      recommendations
+    }
+  }
 `;
 
 export const QUERY_EMOTION_HISTORY = gql`
-    query emotionHistory {
-        emotionHistory {
-            _id
-            emotion
-            description
-            recommendations
-        }
+  query emotionHistory {
+    emotionHistory {
+      _id
+      emotion
+      description
+      recommendations
     }
+  }
 `;
 
 export const QUERY_SINGLE_FEELING = gql`
-    query singleFeeling($feelingId: ID!) {
-        feeling(feelingId: $feelingId) {
-            _id
-            emotion
-            description
-            recommendations
-        }
+  query singleFeeling($feelingId: ID!) {
+    feeling(feelingId: $feelingId) {
+      _id
+      emotion
+      description
+      recommendations
     }
+  }
 `;
 
 export const QUERY_SINGLE_EMOTION_HISTORY = gql`
-    query singleEmotionHistory($emotionHistoryId: ID!) {
-        emotionHistory(emotionHistoryId: $emotionHistoryId) {
-            _id
-            emotion
-            description
-            recommendations
-        }
+  query singleEmotionHistory($emotionHistoryId: ID!) {
+    emotionHistory(emotionHistoryId: $emotionHistoryId) {
+      _id
+      emotion
+      description
+      recommendations
     }
+  }
 `;
-
