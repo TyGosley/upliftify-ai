@@ -23,14 +23,13 @@
 }
 
 .App-header {
-  /* background-color: #282c34; */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  /* color: white; */
+
   background: linear-gradient(-45deg, #bdc3c7, #2c3e50, #c33764, #1d2671, #141e30, #6dd5ed);
   background-size: 400% 400%;
   animation: backgroundChange0 15s ease infinite;
@@ -48,19 +47,26 @@
   }
 }
 
-/* .App-link {
-  color: #61dafb;
+/* Navbar CSS */
+
+.app-navbar-wrapper {
+  position: fixed;
+  width: 100%;
+  z-index: 100;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
+.app-navbar-wrapper .ml-auto {
+  margin-left: auto;
+}
 
+.navbar-brand {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--Heather);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Title on Home CSS */
 .UpliftTitle {
   font-size: 5rem;
   font-weight: 700;
@@ -75,7 +81,7 @@
 .scrollable-dropdown {
   max-height: 200px; /* Set a desired height for the scrollable area */
   overflow-y: auto; /* Enable vertical scrolling */
-  background-color: var(--Moderate-Pink);
+  background-color: var(--Bluewood);
 }
 
 .p {
@@ -88,13 +94,14 @@
 .dropdown-container {
   max-height: 200px; /* Set the maximum height of the dropdown container */
   overflow-y: auto; /* Enable vertical scrolling for the container if the items exceed the height */
-  background-color: var(--Moderate-Pink); /* Set the background color of the dropdown container */
+  background-color: var(--Bluewood); /* Set the background color of the dropdown container */
   padding: 10px; /* Add some padding to the container */
 }
 
 .dropdown-container .dropdown-item {
   display: flex; /* Use flexbox to align the checkbox and item text */
   align-items: center; /* Align items vertically */
+  background-color: var(--Bluewood);
 }
 
 .dropdown-container .dropdown-item input[type='checkbox'] {
@@ -111,10 +118,28 @@
   background-color: var(--Moderate-Pink); /* Change the background color of the active item */
 }
 
+.btn-success {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: var(--Very-Dark-Blue) !important;
+  --bs-btn-border-color: var(--Moderate-Pink) !important;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: var(--Softy-Cyan) !important;
+  --bs-btn-hover-border-color: var(--Moderate-Pink) !important;
+  --bs-btn-focus-shadow-rgb: 60, 153, 110;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: var(--Very-Dark-Blue) !important;
+  --bs-btn-active-border-color: var(--Moderate-Pink) !important;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: var(--Very-Dark-Blue) !important;
+  --bs-btn-disabled-border-color: var(--Moderate-Pink) !important;
+}
+
 /* Styling for the result container */
 .result-text {
   font-family: monospace, sans-serif;
   font-size: 15px;
+  font-weight: bold;
   padding: 10px;
   background-color: var(--Softy-Cyan);
   color: var(--Blackish-Blue);
@@ -122,5 +147,26 @@
   margin-top: 10px;
 }
 
-/* Helpful Links CSS */
+/* Footer CSS */
 
+.Footer {
+  position: relative;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #1e2124;
+  color: var(--Heather);
+  text-align: center;
+  font-family: 'adelle-serif', serif;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+span {
+  margin: 0 10px;
+  padding: 5px;
+}

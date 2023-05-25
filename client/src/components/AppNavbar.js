@@ -6,12 +6,14 @@ import LoginForm from './LoginForm';
 
 import Auth from '../utils/auth';
 
+
+
 const AppNavbar = () => {
   // set modal display state
   const [showModal, setShowModal] = useState(false);
 
   return (
-    <>
+    <div className="app-navbar-wrapper"> {/* Apply the CSS class */}
       <Navbar bg='dark' variant='dark' expand='lg'>
         <Container fluid>
           <Navbar.Brand as={Link} to='/'>
@@ -33,7 +35,6 @@ const AppNavbar = () => {
               )}
             </Nav>
           </Navbar.Collapse>
-          
         </Container>
       </Navbar>
       {/* set modal data up */}
@@ -68,7 +69,7 @@ const AppNavbar = () => {
           </Modal.Body>
         </Tab.Container>
       </Modal>
-    </>
+    </div>
   );
 };
 

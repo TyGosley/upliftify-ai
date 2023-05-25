@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import EmotionDropdown from './components/EmotionDropdown';
-import NavBar from './components/Navbar';
+import NavBar from './components/AppNavbar';
+import Footer from './components/Footer';
 import './App.css';
 
 const httpLink = createHttpLink({
@@ -39,6 +40,7 @@ function App() {
                 
               </div>
             </header>
+            <Footer />
           </div>
         </>
       </Router>
